@@ -116,12 +116,11 @@ gdal_rasterize <- function(
 			character = list(
 					varnames <- c(
 					"a","where","sql","dialect","of","a_srs","ot",
-					"config",
 					"src_datasource","dst_filename"
 					)),
 			repeatable = list(
 					varnames <- c(
-						"b","burn","l","co"
+						"b","burn","l","co","config"
 					))
 	)
 	
