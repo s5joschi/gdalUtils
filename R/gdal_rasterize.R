@@ -26,6 +26,7 @@
 #' @param ts Numeric. c(width,height) (GDAL >= 1.8.0) set output file size in pixels and lines. Note that -ts cannot be used with -tr
 #' @param ot Character. (GDAL >= 1.8.0) For the output bands to be of the indicated data type. Defaults to Float64
 #' @param q Logical. (GDAL >= 1.8.0) Suppress progress monitor and other non-error output.
+#' @param config Character. (GDAL >= 1.8.0) Configuration Options for GDAL see https://trac.osgeo.org/gdal/wiki/ConfigOptions
 #' @param output_Raster Logical. Return output dst_filename as a RasterBrick?
 #' @param ignore.full_scan Logical. If FALSE, perform a brute-force scan if other installs are not found.  Default is TRUE.
 #' @param verbose Logical. Enable verbose execution? Default is FALSE.  
@@ -80,6 +81,7 @@ gdal_rasterize <- function(
 		b,i,at,burn,a,threeD,add,l,where,sql,dialect,
 		of,a_srs,co,a_nodata,init,
 		te,tr,tap,ts,ot,q,
+		config,
 #		additional_commands,
 		output_Raster=FALSE,
 		ignore.full_scan=TRUE,
@@ -114,6 +116,7 @@ gdal_rasterize <- function(
 			character = list(
 					varnames <- c(
 					"a","where","sql","dialect","of","a_srs","ot",
+					"config",
 					"src_datasource","dst_filename"
 					)),
 			repeatable = list(
@@ -126,12 +129,11 @@ gdal_rasterize <- function(
 			"b","i","at","burn","a","threeD","add","l",
 			"where","sql","dialect",
 			"of","a_srs","co","a_nodata","init",
-			"te","tr","tap","ts","ot","q",
+			"te","tr","tap","ts","ot","q","config",
 			"src_datasource","dst_filename"
 	)
-	
 	parameter_noflags <- c("src_datasource","dst_filename")
-	
+	parameter_doubledash<-c("config")
 	parameter_noquotes <- unlist(parameter_variables$vector)
 	
 	executable <- "gdal_rasterize"
@@ -141,6 +143,7 @@ gdal_rasterize <- function(
 			parameter_variables=parameter_variables,
 			parameter_values=parameter_values,
 			parameter_order=parameter_order,
+			parameter_doubledash=parameter_doubledash,
 			parameter_noflags=parameter_noflags,
 			parameter_noquotes=parameter_noquotes,
 			gdal_installation_id=gdal_chooseInstallation(hasDrivers=of))
