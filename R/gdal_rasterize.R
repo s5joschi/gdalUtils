@@ -107,7 +107,7 @@ gdal_rasterize <- function(
 					)),
 			vector = list(
 					varnames <- c(
-						"init","te","tr","ts"	
+						"init","te","tr","ts","ot"	
 					)),
 			scalar = list(
 					varnames <- c(
@@ -115,7 +115,7 @@ gdal_rasterize <- function(
 					)),
 			character = list(
 					varnames <- c(
-					"a","where","sql","dialect","of","a_srs","ot",
+					"a","where","sql","dialect","of","a_srs",
 					"src_datasource","dst_filename"
 					)),
 			repeatable = list(
